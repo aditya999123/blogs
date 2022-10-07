@@ -4,12 +4,14 @@ ERROR:  data type integer has no default operator class for access method "gin"
 create extension btree_gin;
 create index on expenses using gin(org_id, user_ids);
 
-select *
+explain analyze
+select 
+  *
 from
- expenses ex
+  expenses ex
 where
- ex.org_id=1
- and ex.user_ids @> '{5}'
+  ex.org_id=1
+  and ex.user_ids @> '{5}'
 ;
 
 Bitmap Heap Scan on expenses ex  (cost=9.26..34.63 rows=25 width=51) (actual time=0.087..0.087 rows=0 loops=1)
