@@ -8,7 +8,7 @@ create table orgs(
    id serial primary key
 );
 
-insert into orgs select * from generate_series(1,1000);
+insert into orgs select * from generate_series(1, 1000);
 
 create table expenses(
    id serial primary key,
@@ -22,7 +22,7 @@ insert into expenses
        1+id%999 org_id, 
        gi.user_ids
    from 
-      generate_series(1,5000000) id
+      generate_series(1, 5000000) id
    join lateral (
       select 
           i%5000000 pid, 
