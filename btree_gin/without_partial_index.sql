@@ -1,15 +1,14 @@
 create index on expenses using gin(user_ids);
 create index on expenses(org_id);
 
-
 explain analzye 
 select
- *
+  *
 from
- expenses ex
+  expenses ex
 where
- ex.org_id=1
- and ex.user_ids @> '{5}'
+  ex.org_id=1
+  and ex.user_ids @> '{5}'
 ;
 
 Bitmap Heap Scan on expenses ex  (cost=253.62..278.99 rows=25 width=51) (actual time=1.050..1.051 rows=1 loops=1)
